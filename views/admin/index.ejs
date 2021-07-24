@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>BLEWGLOBAL</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="login-page/image/png" href="../../../app-assets/images/admin/fav (1).png" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login-page/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login-page/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login-page/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login-page/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login-page/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login-page/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login-page/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login-page/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login-page/css/util.css">
+    <link rel="stylesheet" type="text/css" href="login-page/css/main.css">
+    <!--===============================================================================================-->
+</head>
+
+<body>
+
+    <div class="limiter">
+        <%if(msg && msg!=''){%>
+            <div data-notify="container" id="flashmessage" class="bootstrap-notify-container alert " role="alert" data-notify-position="top-left" style="display: inline-block; margin: 0px auto; position: fixed; z-index: 1031; top: 20px; right: 20px; color:white; background: green;"><span data-notify="icon"></span> <span data-notify="title"></span> <span data-notify="message">
+                                <i class="feather icon-check-circle icon"></i><%=msg%></span></div>
+            <% }%>
+                <%if(error && error!=''){%>
+                    <div data-notify="container" id="flashmessage" class="bootstrap-notify-container alert " role="alert" data-notify-position="top-left" style="display: inline-block; margin: 0px auto; position: fixed; z-index: 1031; top: 20px; right: 20px; color:white; background: red;"><span data-notify="icon"></span> <span data-notify="title"></span> <span data-notify="message">
+                        <i class="feather icon-check-circle icon"></i><%=error%></span></div>
+                    <% }%>
+                        <div class="container-login100" style="background-image: url('login-page/images/image_2021_04_14T10_05_19_736Z.png');">
+
+                            <div class="wrap-login100">
+                                <div style="text-align:center">
+                                    <img src="../../../app-assets/images/admin/logo.png" style="
+               
+               width: 256px;
+    margin-bottom: 34px;
+    display: inline-block;
+            " />
+                                </div>
+                                <form class="login100-form validate-form" action="signin" method="POST">
+                                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                                        <input class="input100" type="text" name="username" placeholder="Username">
+                                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                                    </div>
+
+                                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                                        <input class="input100" type="password" name="password" placeholder="Password">
+                                        <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                                    </div>
+                                    <div class="container-login100-form-btn">
+                                        <button type="submit" class="login100-form-btn">
+							Login
+						</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+    </div>
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="login-page/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="login-page/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="login-page/vendor/bootstrap/js/popper.js"></script>
+    <script src="login-page/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="login-page/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="login-page/vendor/daterangepicker/moment.min.js"></script>
+    <script src="login-page/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="login-page/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="login-page/js/main.js"></script>
+
+</body>
+
+</html>
+<script>
+    $("#flashmessage").fadeTo(2000, 500).slideUp(500, function() {
+        $("#flashmessage").slideUp(500);
+    });
+</script>

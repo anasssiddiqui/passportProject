@@ -1,0 +1,197 @@
+<!-- BEGIN: Main Menu-->
+<% include  layout/header.ejs %>
+    <% include  layout/navbar.ejs %>
+
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-9 col-12 mb-2">
+                        <div class="row breadcrumbs-top">
+                            <div class="col-12">
+                                <h2 class="content-header-title float-left mb-0">View User</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+                        <a href="userslist">
+                            <div class="form-group breadcrum-right">
+                                <div> <button class="btn-icon btn btn-primary btn-round btn-sm " type="button"><i
+                                class="feather icon-list"></i></button>
+                                    <!-- <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="adduser">Add student</a>
+                                </div> -->
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="content-body">
+
+                    <section class="page-users-view">
+                        <div class="row">
+
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title">User profile</div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <% if(users_data.profileImage==""){%>
+                                                <div class="users-view-image">
+                                                    <img src="../../../app-assets/images/users/unnamed.jpg" class="users-avatar-shadow w-100 rounded mb-2 pr-2 ml-1" alt="avatar">
+                                                </div>
+                                                <%} else{%>
+                                                    <div class="users-view-image">
+                                                        <img src="../../../app-assets/images/users/<%=users_data.profileImage%>" class="users-avatar-shadow w-100 rounded mb-2 pr-2 ml-1" alt="avatar">
+                                                    </div>
+                                                    <%}%>
+                                                        <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+                                                            <table>
+                                                                <tr>
+                                                                    <td class="font-weight-bold">Username</td>
+                                                                    <td>
+                                                                        <%=users_data.username%>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="font-weight-bold">Email</td>
+                                                                    <td>
+                                                                        <%=users_data.email%>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="font-weight-bold">phone</td>
+                                                                    <td>
+                                                                        <%=users_data.phone%>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <div class="col-12 col-md-12 col-lg-5">
+                                                            <table class="ml-0 ml-sm-0 ml-lg-0">
+                                                                <tr>
+                                                                    <td class="font-weight-bold">Status</td>
+                                                                    <td>
+                                                                        <%if(users_data.status==1){
+                                                                %>
+                                                                            active
+                                                                            <%}else{%>
+                                                                                inactive
+                                                                                <%}%>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="font-weight-bold">Unique Name</td>
+                                                                    <td>
+                                                                        <%=users_data.uniqueName%>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="font-weight-bold">Company</td>
+                                                                    <td>BLEWGLOBAL</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+
+                </div>
+                <div class="content-body">
+
+                    <section id="page-account-settings">
+                        <div class="row">
+
+                            <div class="col-md-3 mb-2 mb-md-0">
+                                <ul class="nav nav-pills flex-column mt-md-0 mt-1">
+                                    <li class="nav-item">
+                                        <a class="nav-link d-flex py-75 active" id="account-pill-password" data-toggle="pill" href="#account-vertical-password" aria-expanded="false">
+                                            <i class="feather icon-dollar-sign mr-50 font-medium-3"></i>Posts list
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-9">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="account-vertical-password" role="tabpanel " aria-labelledby="account-pill-password " aria-expanded="false ">
+                                                    <section id="basic-datatable">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="card">
+                                                                    <div class="card-content">
+                                                                        <div class="card-body card-dashboard">
+                                                                            <div class="table-responsive">
+                                                                                <table class="table zero-configuration">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>S.no</th>
+                                                                                            <th>title</th>
+                                                                                            <th>Description</th>
+
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <%for(let i in response.users_posts){%>
+
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <%=parseInt(i)+1%>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <%=response.users_posts[i].title%>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <%=response.users_posts[i].description%>
+                                                                                                </td>
+
+                                                                                            </tr>
+                                                                                            <% }%>
+                                                                                    </tbody>
+                                                                                    <tfoot>
+                                                                                        <tr>
+                                                                                            <th>S.no</th>
+                                                                                            <th>title</th>
+                                                                                            <th>Description</th>
+
+
+                                                                                        </tr>
+                                                                                    </tfoot>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+        <!-- END: Content-->
+
+        <div class="sidenav-overlay "></div>
+        <div class="drag-target "></div>
+        <% include  layout/footer.ejs %>
+            <!-- BEGIN: Footer-->

@@ -1,0 +1,55 @@
+<!-- BEGIN: Main Menu-->
+<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+    <div class="navbar-header">
+        <ul class="nav navbar-nav flex-row">
+            <li class="nav-item mr-auto">
+                <a class="navbar-brand" href="dashboard">
+                    <img src="../../app-assets/images/admin/fav (1).png" style="
+                        width: 45px;
+    height: 50px;
+   
+                " />
+                    <h2 class="brand-text mb-0">BLEWGLOBAL</h2>
+                </a>
+            </li>
+            <li class="nav-item nav-toggle" style="margin-right:10px;"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i><i class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary" data-ticon="icon-disc"></i></a></li>
+        </ul>
+    </div>
+    <div class="shadow-bottom"></div>
+    <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class="nav-item <%=(title == 'dashboard' )? 'active' : '' %>"><a href="dashboard"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+            </li>
+            <li class="nav-item <%=(title == 'profile' )? 'active' : '' %>"><a href="profile"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Dashboard">My Profile</span></a>
+            </li>
+            <li class=" navigation-header"><span>Apps</span>
+            </li>
+
+            <li class="nav-item <%=(title == 'User' )? 'active' : '' %>"><a href="#"><i class="feather icon-users"></i><span class="menu-title" data-i18n="User">Users</span></a>
+                <ul class="menu-content">
+                    <li><a href="userslist"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">List</span></a>
+                    </li>
+                    <li><a href="/adduser"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="View">Add</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item <%=(title == 'category' )? 'active' : '' %>"><a href="catlist"><i class="feather icon-briefcase"></i><span class="menu-title" data-i18n="Calender">Occupations</span></a>
+            </li>
+            <li class="nav-item <%=(title == 'tags' )? 'active' : '' %>"><a href="taglist"><i class="feather icon-list"></i><span class="menu-title" data-i18n="Calender">Tags</span></a>
+            </li>
+            <li class="nav-item <%=(title == 'contactus' )? 'active' : '' %>"><a href="contactuslist"><i class="feather icon-message-circle"></i><span class="menu-title" data-i18n="Calender">Contact us</span></a>
+            </li>
+            <li class="nav-item <%=(title == 'reasonsList' )? 'active' : '' %>"><a href="reasonsList"><i class="feather icon-align-left"></i><span class="menu-title" data-i18n="Calender">Reasons List</span></a>
+            </li>
+            <li class="nav-item <%=(title == 'postReportList' )? 'active' : '' %>"><a href="postsReportlist"><i class="feather icon-clipboard"></i><span class="menu-title" data-i18n="Calender">Report list</span></a>
+            </li>
+            <li class="nav-item <%=(title == 'Terms' )? 'active' : '' %>"><a href="terms"><i class="feather icon-align-justify "></i><span class="menu-title" data-i18n="Calender">Contents</span></a>
+            </li>
+            <li class="nav-item <%=(title == 'images' )? 'active' : '' %>"><a href="getimages"><i class="feather icon-image"></i><span class="menu-title" data-i18n="Calender">Images section</span></a>
+            </li>
+            <li class="nav-item <%=(title == 'posts' )? 'active' : '' %>"><a href="postslist"><i class="feather icon-align-right"></i><span class="menu-title" data-i18n="Calender">Posts list</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- END: Main Menu-->

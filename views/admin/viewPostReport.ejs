@@ -1,0 +1,151 @@
+<% include  layout/header.ejs %>
+    <% include  layout/navbar.ejs %>
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-9 col-12 mb-2">
+                        <div class="row breadcrumbs-top">
+                            <div class="col-12">
+                                <h2 class="content-header-title float-left mb-0">View Report</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <section id="floating-label-layouts">
+                        <div class="row match-height">
+
+                            <div class="col-md-12 col-12">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <form class="form" enctype='multipart/form-data' method="post" id="annoucement" action="updateannoucement">
+
+                                                <input type="text" name="id" style="visibility: hidden; width: 0px; height: 0px" value="<%=response.id%>" />
+                                                <div class="form-body">
+                                                    <div class="row">
+
+                                                        <div class="col-12">
+                                                            <div class="form-label-group position-relative has-icon-left" style="    margin-top: 21px;
+                                                            ">
+                                                                <input type="text" id="email-id-floating-icon" class="form-control" name="title" placeholder="Title" value="<%=response.reportBy%>" disabled>
+                                                                <div class="form-control-position">
+                                                                    <i class="feather icon-align-center"></i>
+                                                                </div>
+                                                                <label for="email-id-floating-icon">Name</label>
+
+                                                            </div>
+                                                            <div class="form-label-group position-relative has-icon-left" style="    margin-top: 21px;
+                                                            ">
+                                                                <input type="text" id="email-id-floating-icon" class="form-control" name="email" placeholder="Title" value="<%=response.dataValues.title%>" disabled>
+                                                                <div class="form-control-position">
+                                                                    <i class="feather icon-align-center"></i>
+                                                                </div>
+                                                                <label for="email-id-floating-icon">Title</label>
+                                                            </div>
+
+                                                            <div class="form-label-group position-relative has-icon-left" style="    margin-top: 21px;
+                                                            ">
+                                                                <input type="text" id="email-id-floating-icon" class="form-control" name="email" placeholder="Reason" value="<%=response.dataValues.reason%>" disabled>
+                                                                <div class="form-control-position">
+                                                                    <i class="feather icon-align-center"></i>
+                                                                </div>
+                                                                <label for="email-id-floating-icon">Reason</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-label-group position-relative has-icon-left">
+                                                                <fieldset class="form-label-group">
+                                                                    <textarea class="form-control" id="label-textarea" rows="8" cols="50" name="description" placeholder="message" disabled><%=response.description%></textarea>
+                                                                    <label for="label-textarea">Description</label>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </form>
+                                            </div>
+                                            <!-- /--------------------------------bopup form------------------>
+                                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Send message</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <form class="form" action="sendmail" method="post" id="lessonss">
+                                                            <div class="modal-body">
+                                                                <input type="hidden" name="id" id="idd">
+                                                                <input type="hidden" name="useremail" id="idd" value="<%=response.email%>">
+                                                                <div class="form-body">
+                                                                    <div class="form-label-group position-relative has-icon-left">
+                                                                        <fieldset class="form-label-group">
+                                                                            <textarea class="form-control" id="label-textarea" rows="8" cols="50" name="message" placeholder="Message" required></textarea>
+                                                                            <label for="label-textarea">Message</label>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- --------------------end pop up form------------------- -->
+                                            <!-- <div class="col-12">
+                                                <button type="submit" id="click-me" data-toggle="modal" data-target="#exampleModalCenter" class=" btn btn-primary mr-1 mb-1">Reply</button>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!-- END: Content-->
+
+        <div class="sidenav-overlay "></div>
+        <div class="drag-target "></div>
+        <% include  layout/footer.ejs %>
+            <script>
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            $('#blah').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+                $("#upload ").change(function() {
+                    readURL(this);
+                });
+            </script>
+            <script>
+                $("#lessonss").validate({
+                    errorElement: 'div',
+
+                    rules: {
+                        message: {
+                            required: true,
+
+                        },
+                    },
+                    messages: {
+                        message: {
+                            required: 'Please enter something'
+                        }
+                    },
+
+                });
+            </script>

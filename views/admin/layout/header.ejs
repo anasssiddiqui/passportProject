@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>BLEWGLOBAL</title>
+    <link rel="apple-touch-icon" href="../../../app-assets/images/admin/al_maraqi.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/admin/fav (1).png">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/charts/apexcharts.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/file-uploaders/dropzone.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/datatable/datatables.min.css">
+    <!-- END: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/media-plyr.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/plyr.css">
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-user.css">
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-gradient.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/dashboard-ecommerce.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/card-analytics.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-gradient.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/users.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/file-uploaders/dropzone.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/data-list-view.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/dashboard-analytics.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/card-analytics.css">
+    <script src="../../../assets/js/sweetalert.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/wizard.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-chat.css">
+
+    <script src="https://github.com/Modernizr/Modernizr/raw/master/modernizr.js"></script>
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+    <!-- END: Custom CSS-->
+    <style>
+        /* This only works with JavaScript, 
+		   if it's not present, don't show loader */
+        
+        .no-js #loader {
+            display: none;
+        }
+        
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+    </style>
+</head>
+<!-- END: Head-->
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern 2-columns chat-application content-left-sidebar navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+    <!-- BEGIN: Header-->
+    <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-light navbar-shadow">
+
+        <%if(msg && msg!=''){%>
+            <div data-notify="container" id="flashmessage" class="bootstrap-notify-container alert " role="alert" data-notify-position="top-left" style="display: inline-block; margin: 0px auto; position: fixed; z-index: 1031; top: 20px; right: 20px; color:antiquewhite;"><span data-notify="icon"></span> <span data-notify="title"></span> <span data-notify="message">
+                <i class="feather icon-check-circle icon"></i><%=msg%></span></div>
+            <% }%>
+                <%if(error && error!=''){%>
+                    <div data-notify="container" id="flashmessage" class="bootstrap-notify-container errormsg " role="alert" data-notify-position="top-left" style="display: inline-block; margin: 0px auto; position: fixed; z-index: 1031; top: 20px; right: 20px; color:antiquewhite;"><span data-notify="icon"></span> <span data-notify="title"></span> <span data-notify="message">
+                    <i class="feather icon-alert-circle icon"></i><%=error%></span></div>
+                    <% }%>
+                        <div class="navbar-wrapper">
+
+                            <div class="navbar-container content">
+
+                                <div class="navbar-collapse" id="navbar-mobile">
+                                    <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
+                                        <ul class="nav navbar-nav">
+                                            <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <ul class="nav navbar-nav float-right">
+
+                                        <li class="dropdown dropdown-user nav-item">
+                                            <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+                                                <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600"><%=sessiondata.user.name %></span><span class="user-status"><%if(sessiondata.user.status==1){%>
+Active
+                                                <% }else if(sessiondata.user.status==2) {%>
+                                                    Do not disturb
+                                                    <%}else if(sessiondata.user.status==3){%>
+                                                        Away<%}else{%>
+                                                            Offline
+                                                            <%}%></span></div><span><img class="round" src="../../../app-assets/images/admin/<%=sessiondata.user.image %>" alt="avatar" height="40" width="40"></span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="profile"><i class="feather icon-user"></i> My Profile</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="logout"><i class="feather icon-power"></i> Logout</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+    </nav>
+
+    <!-- END: Header-->

@@ -1,0 +1,463 @@
+<% include  layout/header.ejs %>
+    <% include  layout/navbar.ejs %>
+
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-9 col-12 mb-2">
+                        <div class="row breadcrumbs-top">
+                            <div class="col-12">
+                                <h2 class="content-header-title float-left mb-0">Admin Profile</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <div id="user-profile">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="profile-header mb-2">
+                                    <div class="relative">
+                                        <div class="cover-container">
+                                            <img class="img-fluid bg-cover rounded-0 w-100" src="../../../app-assets/images/admin/<%=response.banner%>" style="height: 286px;" alt="User Profile Image">
+                                        </div>
+                                        <div class="profile-img-container d-flex align-items-center justify-content-between">
+                                            <img src="../../../app-assets/images/admin/<%=response.image %>" class="rounded-circle img-border box-shadow-1" id="blah" alt="Card image">
+                                            <div class="float-right" style="margin-top:52px">
+                                                <ul class="nav nav-tabs" role="tablist">
+                                                    <li role="presentation" class="btn btn-icon btn-icon edit-profile btn-primary mr-1">
+                                                        <a href="#profile_settings" aria-controls="settings" role="tab" data-toggle="tab">
+                                                            <i class="feather icon-edit-2" style="color:white"><span
+                                                            class="pass">My Profile</span></i>
+                                                        </a>
+                                                    </li>
+                                                    <li role="presentation" class="btn btn-icon btn-icon edit-profile btn-primary mr-1">
+                                                        <a href="#change_password_settings" aria-controls="settings" role="tab" data-toggle="tab">
+                                                            <i class="feather icon-settings" style="color:white"><span
+                                                            class="pass">Password</span></i>
+                                                        </a>
+                                                    </li>
+                                                    <li role="presentation" class="btn btn-icon btn-icon edit-profile btn-primary mr-1">
+                                                        <a href="#change_payments" aria-controls="settings" role="tab" data-toggle="tab">
+                                                            <i class="feather icon-dollar-sign" style="color:white"><span
+                                                            class="pass">Commission</span></i>
+                                                        </a>
+                                                    </li>
+                                                    <!-- <li role="presentation" class="btn btn-icon btn-icon edit-profile btn-primary mr-1">
+                                                        <a href="#change_discount" aria-controls="settings" role="tab" data-toggle="tab">
+                                                            <i class="feather icon-percent" style="color:white"><span
+                                                            class="pass">Cart Value</span></i>
+                                                        </a>
+                                                    </li> -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end align-items-center profile-header-nav">
+                                        <nav class="navbar navbar-expand-sm w-100 pr-0">
+                                            <button class="navbar-toggler pr-0" type="button" data-toggle="collapse" data-target="navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                            <span class="navbar-toggler-icon"><i class="feather icon-align-justify"></i></span>
+                                        </button>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <section id="profile-info">
+                            <div class="row">
+                                <div class="col-lg-5 col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>About</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>Admin</p>
+                                            <div class="mt-1">
+                                                <h6 class="mb-0">Name</h6>
+                                                <p>
+                                                    <%=sessiondata.user.name %>
+                                                </p>
+                                            </div>
+                                            <div class="mt-1">
+                                                <h6 class="mb-0">Phone:</h6>
+                                                <p>
+                                                    <%=sessiondata.user.phone %>
+                                                </p>
+                                            </div>
+                                            <div class="mt-1">
+                                                <h6 class="mb-0">Email:</h6>
+                                                <p>
+                                                    <%=sessiondata.user.email %>
+                                                </p>
+                                            </div>
+                                            <div class="mt-1">
+                                                <h6 class="mb-0">Website:</h6>
+                                                <p>www.blewglobal.com</p>
+                                            </div>
+                                            <div class="mt-1">
+                                                <a href="https://www.facebook.com" target="_blank" class="btn btn-sm btn-icon btn-primary mr-25 p-25"><i class="feather icon-facebook"></i></a>
+                                                <a href="https://twitter.com/login" target="_blank" class="btn btn-sm btn-icon btn-primary mr-25 p-25"><i class="feather icon-twitter"></i></a>
+                                                <a href="https://www.instagram.com/accounts/login/" target="_blank" class="btn btn-sm btn-icon btn-primary p-25"><i class="feather icon-instagram"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-7 col-12">
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane <%=(title == 'profile' )? 'active' : '' %>" id="profile_settings">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Edit profile</h4>
+                                                </div>
+                                                <div class="card-content">
+                                                    <div class="card-body">
+
+                                                        <form class="form" enctype='multipart/form-data' id="profile" method="post" action="updateadminprofile">
+                                                            <input type="hidden" class="form-control" name="hiddenimage" name="name" value="<%=response.image %>">
+                                                            <input type="hidden" class="form-control" name="bannerimage" name="name" value="<%=response.banner %>">
+                                                            <input type="hidden" name="id" name="id" value="1">
+                                                            <div class="form-body">
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <div class="form-label-group position-relative has-icon-left">
+                                                                            <input type="text" id="first-name-floating-icon" class="form-control" name="name" placeholder="Name" value="<%=response.name %>">
+
+                                                                            <div class="form-control-position">
+                                                                                <i class="feather icon-user"></i>
+                                                                            </div>
+                                                                            <label for="first-name-floating-icon">Name</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <div class="form-label-group position-relative has-icon-left">
+                                                                            <input type="email" id="email-id-floating-icon" class="form-control" value="<%=response.email %>" name="email" placeholder="Email">
+                                                                            <div class="form-control-position">
+                                                                                <i class="feather icon-mail"></i>
+                                                                            </div>
+                                                                            <label for="email-id-floating-icon">Email</label>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <div class="form-label-group position-relative has-icon-left">
+                                                                            <input type="number" id="contact-floating-icon" class="form-control" name="phone" placeholder="Mobile" value="<%=response.phone %>">
+                                                                            <div class="form-control-position">
+                                                                                <i class="feather icon-smartphone"></i>
+                                                                            </div>
+                                                                            <label for="contact-floating-icon">Mobile</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6 col-md-12">
+                                                                        <fieldset class="form-group">
+                                                                            <div class="custom-file">
+                                                                                <input type="file" accept="image/x-png,image/gif,image/jpeg" name="profieimage" class="custom-file-input" id="inputGroupFile01">
+                                                                                <label class="custom-file-label" for="inputGroupFile01">Profile Image</label>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                    <div class="col-lg-6 col-md-12">
+                                                                        <fieldset class="form-group">
+                                                                            <div class="custom-file">
+                                                                                <input type="file" accept="image/x-png,image/gif,image/jpeg" name="banner" class="custom-file-input" id="bannerimage">
+                                                                                <label class="custom-file-label" for="bannerimage">banner</label>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                    <div class="form-group col-12">
+
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade in" id="change_password_settings">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Change password</h4>
+                                                </div>
+                                                <div class="card-content">
+                                                    <div class="card-body">
+                                                        <form class="form" enctype='multipart/form-data' id="changepassword" method="post" action="updateadminpassword">
+                                                            <input type="hidden" name="id" name="id" value="1">
+                                                            <div class="form-body">
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <div class="form-label-group position-relative has-icon-left">
+                                                                            <input type="password" id="passlabel" class="form-control" name="oldPassword" placeholder="Old password">
+                                                                            <div class="form-control-position">
+                                                                                <i class="feather icon-lock"></i>
+                                                                            </div>
+                                                                            <label for="passlabel">Old password</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <div class="form-label-group position-relative has-icon-left">
+                                                                            <input type="password" id="new_password" class="form-control" name="NewPassword" placeholder="New password">
+                                                                            <div class="form-control-position">
+                                                                                <i class="feather icon-lock"></i>
+                                                                            </div>
+                                                                            <label for="new-password-label">New password</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12 ">
+                                                                        <div class="form-label-group position-relative has-icon-left">
+                                                                            <input type="password" id="confirm-password-label" class="form-control" name="confirmpassword" placeholder="Confirm New Password">
+                                                                            <div class="form-control-position">
+                                                                                <i class="feather icon-lock"></i>
+                                                                            </div>
+                                                                            <label for="confirm-password-label">Confirm New Password</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-12">
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                        </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane <%=(title == 'commision' )? 'active' : '' %>" id="change_payments">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Commission </h4>
+                                                </div>
+                                                <div class="card-content">
+                                                    <div class="card-body">
+                                                        <form class="form" id="changepayments" enctype='multipart/form-data' method="post" action="updatecommision">
+                                                            <input type="hidden" name="id" name="id" value="1">
+                                                            <div class="form-body">
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <div class="form-label-group position-relative has-icon-left">
+                                                                            <input type="number" id="passlabel" class="form-control" name="commision" placeholder="Admin commision" value="<%=response.commision %>">
+                                                                            <div class="form-control-position">
+                                                                                <i class="feather icon-dollar-sign"></i>
+                                                                            </div>
+                                                                            <label for="passlabel">Admin Commission </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-12">
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                        </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade in" id="change_discount">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Minimum cart Value</h4>
+                                                </div>
+                                                <div class="card-content">
+                                                    <div class="card-body">
+                                                        <form class="form" id="changedescount" enctype='multipart/form-data' method="post" action="updatecartvalue">
+                                                            <input type="hidden" name="id" name="id" value="1">
+                                                            <div class="form-body">
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <div class="form-label-group position-relative has-icon-left">
+                                                                            <input type="number" id="passlabel" class="form-control" name="cartvalue" placeholder="Minimum cart Value" value="<%=response.minimumCartValue %>">
+                                                                            <div class="form-control-position">
+                                                                                <i class="feather icon-dollar-sign"></i>
+                                                                            </div>
+                                                                            <label for="passlabel">Minimum cart Value</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-12">
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                        </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                </div>
+                        </section>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- END: Content-->
+
+            <div class="sidenav-overlay"></div>
+            <div class="drag-target"></div>
+
+            <!-- BEGIN: Footer-->
+            <% include  layout/footer.ejs %>
+                <script>
+                    function readURL(input) {
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                $('#blah').attr('src', e.target.result);
+                            }
+
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
+
+                    $("#inputGroupFile01").change(function() {
+                        readURL(this);
+                    });
+                </script>
+                <script>
+                    $.validator.addMethod("lettersonly", function(value, element) {
+                        return this.optional(element) || /^[A-Za-z0-9]/i.test(value);
+                    }, 'letters only please');
+                    $.validator.addMethod("emailexp", function(value, element) {
+                        return this.optional(element) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i.test(value);
+                    }, 'Please enter a valid email address');
+                    $.validator.addMethod("nospace", function(value, element) {
+                        return this.optional(element) || /^\S+$/i.test(value);
+                    }, 'Password should not contain empty spaces');
+                    $("#profile").validate({
+                        errorElement: 'div',
+                        rules: {
+                            name: {
+                                required: true,
+                                //number: true,
+                                lettersonly: true,
+                                maxlength: 25,
+                            },
+                            phone: {
+                                required: true,
+                                maxlength: 12,
+                                minlength: 10
+                            },
+                            email: {
+                                required: true,
+                                emailexp: true,
+                                maxlength: 64,
+                            }
+                        },
+                        messages: {
+                            name: {
+                                required: "Text field is required.",
+                                // lettersonly: 'only letters'
+                                // number: 'only numbers required.'
+                            },
+                            phone: {
+                                maxlength: "Maximum 12 digit mobile number allowed",
+                                minlength: "Minimum 10 digit mobile number allowed"
+                            },
+
+                        }
+
+                    });
+
+                    $("#changepassword").validate({
+                        errorElement: 'div',
+                        rules: {
+                            NewPassword: {
+                                required: true,
+                                nospace: true,
+                                minlength: 6,
+                                maxlength: 20,
+                            },
+                            confirmpassword: {
+                                required: true,
+                                equalTo: '#new_password'
+                            },
+                            oldPassword: {
+                                required: true,
+                                nospace: true,
+                                maxlength: 20,
+                            }
+                        },
+                        messages: {
+                            confirmpassword: {
+                                equalTo: 'Confirm password did not match.'
+                            },
+
+                        },
+
+                    });
+
+                    $("#changepayments").validate({
+                        errorElement: 'div',
+
+                        rules: {
+                            annual: {
+                                required: true,
+                                nospace: true,
+                                number: true,
+                                min: 1
+                            },
+                            semiannual: {
+                                required: true,
+                                nospace: true,
+                                maxlength: 20,
+                                min: 1
+                            },
+                            men: {
+                                min: 1
+                            },
+                            women: {
+                                min: 1
+                            },
+                            boy6to14: {
+                                min: 1
+                            },
+                            girl6to14: {
+                                min: 1
+                            }
+                        },
+                        messages: {
+
+
+                        },
+
+                    });
+
+                    $("#changedescount").validate({
+                        errorElement: 'div',
+
+                        rules: {
+                            percentage: {
+                                required: true,
+                                nospace: true,
+                                number: true,
+                                min: 1
+                            },
+                            uptousers: {
+                                required: true,
+                                nospace: true,
+                                maxlength: 20,
+                            }
+                        },
+                        messages: {
+
+
+                        },
+
+                    });
+                </script>

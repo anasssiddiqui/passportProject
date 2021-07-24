@@ -1,0 +1,274 @@
+<% include  layout/header.ejs %>
+    <% include  layout/navbar.ejs %>
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-9 col-12 mb-2">
+                        <div class="row breadcrumbs-top">
+                            <div class="col-12">
+                                <h2 class="content-header-title float-left mb-0">Edit User</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+                        <a href="userslist">
+                            <div class="form-group breadcrum-right">
+                                <div> <button class="btn-icon btn btn-primary btn-round btn-sm " type="button"><i
+                                class="feather icon-list"></i></button>
+                                    <!-- <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="adduser">Add student</a>
+                                </div> -->
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="content-body">
+                        <section id="floating-label-layouts">
+                            <div class="row match-height">
+
+                                <div class="col-md-12 col-12">
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <form class="form" enctype='multipart/form-data' method="post" id="user" action="update_user">
+                                                    <input type="hidden" name="hiddenimage" value="<%=users_data.profileImage%>">
+                                                    <input type="hidden" name="id" value="<%=users_data.id%>">
+                                                    <input type="hidden" name="oldpassword" value="<%=users_data.password%>">
+                                                    <input type="file" id="upload" accept="image/x-png,image/gif,image/jpeg" name="image" style="visibility: hidden; width: 0px; height: 0px" multiple />
+                                                    <div class="form-body">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="media mb-2">
+                                                                    <a class="mr-2 my-25" onclick="document.getElementById('upload').click(); return false" href="#">
+                                                                        <% if(users_data.profileImage==""){%>
+                                                                            <img src="../../../app-assets/images/users/unnamed.jpg" alt="users avatar" id="blah" class="users-avatar-shadow rounded" height="100" width="100">
+                                                                            <%} else{%>
+                                                                                <img src="../../../app-assets/images/users/<%=users_data.profileImage%>" alt="users avatar" id="blah" class="users-avatar-shadow rounded" height="100" width="100">
+                                                                                <%}%>
+                                                                    </a>
+                                                                    <div class="media-body mt-50 ">
+                                                                        <h4 class="media-heading ">User Image</h4>
+                                                                        <div class="col-12 d-flex mt-1 px-0 ">
+                                                                            <a href="# " onclick="document.getElementById( 'upload').click(); return false " class="btn btn-primary d-none d-sm-block mr-75 ">Change</a>
+                                                                            <a href="# " class="btn btn-primary d-block d-sm-none mr-75 "><i class="feather icon-edit-1 "></i></a>
+                                                                            <a href="# " class="btn btn-outline-danger d-block d-sm-none "><i class="feather icon-trash-2 "></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-label-group position-relative has-icon-left">
+                                                                    <input type="text" id="first-name-floating-icon" class="form-control" name="username" placeholder="Name" value="<%=users_data.username%>">
+                                                                    <div class="form-control-position">
+                                                                        <i class="feather icon-user"></i>
+                                                                    </div>
+                                                                    <label for="first-name-floating-icon">Name</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="form-label-group position-relative has-icon-left">
+                                                                    <input type="email" id="email-id-floating-icon" class="form-control" name="email" placeholder="Email" value="<%=users_data.email%>">
+                                                                    <div class="form-control-position">
+                                                                        <i class="feather icon-mail"></i>
+                                                                    </div>
+                                                                    <label for="email-id-floating-icon">Email</label>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="form-label-group position-relative has-icon-left">
+                                                                    <input type="number" id="contact-floating-icon" class="form-control" name="phone" placeholder="Mobile" value="<%=users_data.phone%>">
+                                                                    <div class="form-control-position">
+                                                                        <i class="feather icon-smartphone"></i>
+                                                                    </div>
+                                                                    <label for="contact-floating-icon">Mobile</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="form-label-group position-relative has-icon-left">
+                                                                    <input type="text" id="autocomplete" class="form-control" name="location" placeholder="Location" value="<%=users_data.address%>">
+                                                                    <div class="form-control-position">
+                                                                        <i class="feather icon-map"></i>
+                                                                    </div>
+                                                                    <label for="contact-floating-icon">Location</label>
+                                                                    <input type="hidden" class="form-control" id="pac-lat" name="lat" placeholder="lat" required value="">
+                                                                    <input type="hidden" class="form-control" id="pac-lang" name="lng" placeholder="long" required value="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-6">
+                                                                <fieldset class="form-group">
+                                                                    <select class="custom-select" name="occupation" id="customSelect" required='required'>
+                                                                        <option  value="">Select Occupation</option>
+                                                                        <% for(let i in Occupationslist){%>
+                                                                            <option value="<%=Occupationslist[i].id%>" <%= (Occupationslist[i].id == users_data.occupationId)?'selected':'' %>><%=Occupationslist[i].category%></option>
+                                                                       <% }%>
+                                                                    </select>
+                                                                </fieldset>
+                                                            </div>
+                                                            <div class="col-md-6 col-6">
+                                                                <fieldset class="form-group">
+                                                                    <select class="custom-select" name="tags" required="required" id="customSelect">
+                                                                        <option value="">Select Tag</option>
+                                                                        <% for(let i in tagslist){%>
+                                                                            <option value="<%=tagslist[i].id%>" <%= (tagslist[i].id == users_data.tag)?'selected':'' %>><%=tagslist[i].tag%></option>
+                                                                       <% }%>
+                                                                    </select>
+                                                                </fieldset>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <div class="form-label-group position-relative has-icon-left">
+                                                                    <input type="password" id="passwordfloatingicon" class="form-control" name="password" placeholder="Password">
+                                                                    <div class="form-control-position">
+                                                                        <i class="feather icon-lock"></i>
+                                                                    </div>
+                                                                    <label for="password-floating-icon">Password</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <div class="form-label-group position-relative has-icon-left">
+                                                                    <input type="password" id="confirm-password-label" class="form-control" name="confirmPassword" placeholder="Confirm Password">
+                                                                    <div class="form-control-position">
+                                                                        <i class="feather icon-lock"></i>
+                                                                    </div>
+                                                                    <label for="confirm-password-label">Confirm Password</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <!-- END: Content-->
+
+            <div class="sidenav-overlay"></div>
+            <div class="drag-target"></div>
+            <% include  layout/footer.ejs %>
+                <script>
+                    console.log(users_data.phone)
+
+                    function readURL(input) {
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                $('#blah').attr('src', e.target.result);
+                            }
+
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
+
+                    $("#upload").change(function() {
+                        readURL(this);
+                    });
+                </script>
+                <script>
+                    $.validator.addMethod("nospace", function(value, element) {
+                        return this.optional(element) || /^\S+$/i.test(value);
+                    }, 'Password should not contain empty spaces');
+                    $.validator.addMethod("lettersonly", function(value, element) {
+                        return this.optional(element) || /^[A-Za-z0-9]/i.test(value);
+                    }, 'letters only please');
+                    $.validator.addMethod("emailexp", function(value, element) {
+                        return this.optional(element) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i.test(value);
+                    }, 'Please enter a valid email address');
+                    $.validator.addMethod("positiveonly", function(value, element) {
+                        return this.optional(element) || /^[+]?([1-9][0-9]*(?:[\.][0-9]*)?|0*\.0*[1-9][0-9]*)(?:[eE][+-][0-9]+)?$/i.test(value);
+                    }, 'please enter some amount');
+                    $("#user").validate({
+                        errorElement: 'div',
+                        rules: {
+                            username: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 25,
+                                minlength: 3
+                            },
+                            phone: {
+                                required: true,
+                                maxlength: 12,
+                                minlength: 10
+                            },
+                            confirmPassword: {
+                                equalTo: '#passwordfloatingicon'
+                            },
+                            email: {
+                                required: true,
+                                emailexp: true,
+                                maxlength: 64,
+                            },
+                            password: {
+                                nospace: true,
+                                minlength: 6,
+                                maxlength: 20,
+                            },
+                        },
+                        messages: {
+                            username: {
+                                required: "Text field is required.",
+                                // lettersonly: 'only letters'
+                                // number: 'only numbers required.'
+                            },
+                            phone: {
+                                minlength: "Minimum 10 numbers allow",
+                                maxlength: "Maximum 12 numbers allow",
+                            },
+                            confirmPassword: {
+                                equalTo: 'Confirm password did not match.'
+                            },
+                            password: {
+                                minlength: "Minimum 6 characters allowed",
+                                maxlength: "Maximum 20 characters allowed"
+                            }
+                        }
+
+                    });
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUdXAPh9pzLfcW4ITFNitZ5ytAIHPcb54&libraries=places&callback=initAutocomplete" async defer></script>
+
+                <script>
+                    var placeSearch, autocomplete;
+
+                    var componentForm = {
+                        street_number: 'short_name',
+                        route: 'long_name',
+                        locality: 'long_name',
+                        administrative_area_level_1: 'short_name',
+                        country: 'long_name',
+                        postal_code: 'short_name'
+                    };
+
+                    function initAutocomplete() {
+
+                        autocomplete = new google.maps.places.Autocomplete(
+                            document.getElementById('autocomplete'), {
+                                types: ['geocode']
+                            });
+
+
+                        autocomplete.addListener('place_changed', fillInAddress);
+                    }
+
+                    function fillInAddress() {
+
+                        var place = autocomplete.getPlace();
+
+
+
+                        let lat = place.geometry.location.lat();
+                        let lng = place.geometry.location.lng();
+
+                        $("#pac-lat").val(lat);
+                        $("#pac-lang").val(lng);
+                    }
+                </script>

@@ -1,0 +1,217 @@
+<% include  layout/header.ejs %>
+    <% include  layout/navbar.ejs %>
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-9 col-12 mb-2">
+                        <div class="row breadcrumbs-top">
+                            <div class="col-12">
+                                <h2 class="content-header-title float-left mb-0">Contact us list</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="content-body">
+
+                    <!-- Zero configuration table -->-
+                    <!--/ Add rows table -->
+                    <!-- Column selectors with Export Options and print table -->
+                    <section id="column-selectors">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+
+                                    <div class="card-content">
+                                        <div class="card-body card-dashboard">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped dataex-html5-selectors">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.no</th>
+                                                            <th>User name</th>
+                                                            <th>Email</th>
+                                                            <th>Message</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% for(let i in response) { %>
+                                                            <tr>
+                                                                <td>
+                                                                    <%=parseInt(i)+1%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=response[i].name%>
+
+                                                                </td>
+                                                                <td>
+                                                                    <%=response[i].email%>
+                                                                </td>
+                                                                <td>
+                                                                    <%if(response[i].message.length > 25){%>
+                                                                        <%=response[i].message.substr(0, 25)
+                                                                        %>...
+                                                                            <%}else
+                                                                        { %>
+                                                                                <%=response[i].message%>
+                                                                                    <%}%>
+                                                                </td>
+                                                                <td class="product-action">
+                                                                    <span class="action-edit"><a href="viewcontactus?id=<%=response[i].id%>"><i class="feather icon-eye"></i></a></span>
+                                                                    <span class="action-edit"><a href="#" class="edit" id="click-me" data-toggle="modal" data-target="#exampleModalCenter" lessonno="<%=response[i].email%>" lid="<%=response[i].id%>"><i class="feather icon-mail"></i></a></span>
+                                                                </td>
+                                                            </tr>
+                                                            <% } %>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Send message</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form class="form" action="sendmail" method="post" id="editlesson">
+                                    <div class="modal-body">
+                                        <input type="hidden" name="id" id="idd">
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <label for="feedback1" class="sr-only">Send message</label>
+                                                <input type="hidden" name="useremail" id="feedback1" class="form-control" placeholder="lesson no" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <fieldset class="form-label-group">
+                                                    <textarea class="form-control" id="label-textarea" rows="8" cols="50" name="message" placeholder="Message" required></textarea>
+                                                    <label for="label-textarea">Message</label>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column selectors with Export Options and print table -->
+                    <!-- Scroll - horizontal and vertical table -->
+                    <!--/ Scroll - horizontal and vertical table -->
+                </div>
+            </div>
+        </div>
+        <!-- END: Content-->
+        <div class="sidenav-overlay"></div>
+        <div class="drag-target"></div>
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <% include  layout/footer.ejs %>
+            <script type="text/javascript">
+                $('.delete').click(function() {
+                    let _this = $(this);
+                    let id = $(this).attr("rel");
+                    let table = $(this).attr("table");
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this data!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((data) => {
+                        if (data) {
+                            $.ajax({
+                                url: "deleteuser",
+                                type: "post",
+                                data: {
+                                    id: id,
+                                    table: table
+                                },
+                                cache: false,
+                                success: function(response) {
+                                    swal("Proof! Your data has been deleted!", {
+                                        icon: "success",
+                                    });
+                                    setTimeout(() => {
+                                        window.location.reload();
+                                    }, 1000);
+                                },
+                                error(error) {
+                                    console.error(error);
+                                }
+                            });
+                        } else {
+                            swal("Proof! Your data is safe", {
+                                icon: "success",
+                            });
+                        }
+                    });
+                });
+                $(".changestatus").change(function() {
+                    var id = $(this).attr('id');
+                    var table = $(this).attr('table');
+                    var status = 0;
+                    if ($(this).prop("checked") == true) {
+                        status = 1;
+                    } else if ($(this).prop("checked") == false) {
+                        status = 0;
+                    }
+                    var ajaxurl = 'users_statuschange',
+                        data = {
+                            id: id,
+                            table: table,
+                            status: status
+                        };
+                    $.post(ajaxurl, data, function(response) {
+                        if (response == 1) {
+                            swal("Proof! User is now active!", {
+                                icon: "success",
+                            });
+                        } else {
+                            swal("Proof! User is now inactive!", {
+                                icon: "warning",
+                            });
+                        }
+                    });
+                });
+                $('.edit').click(function() {
+                    var id = $(this).attr('lid');
+                    var name = $(this).attr('lessonno');
+                    var vars = $(this).attr('verses');
+
+                    $('#idd').val(id);
+                    $('#feedback1').val(name);
+                    $('#feedback2').val(vars);
+
+                });
+            </script>
+            <script>
+                $("#editlesson").validate({
+                    errorElement: 'div',
+
+                    rules: {
+                        message: {
+                            required: true,
+
+                        },
+                    },
+                    messages: {
+                        message: {
+                            required: 'Please enter something'
+                        }
+                    },
+
+                });
+            </script>

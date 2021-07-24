@@ -1,0 +1,846 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "Swagger Doc For Blewglobal app",
+        "version": "1.0.0",
+        "title": "Swagger Blewglobal app",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "paths": {
+
+        "/signUp": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }],
+                "summary": "signUp",
+                "description": "signUp",
+                "operationId": "signUp",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/signUp"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/userlogin": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }],
+                "summary": "signUp",
+                "description": "userlogin",
+                "operationId": "userlogin",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/userlogin"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/occupationList": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }],
+                "summary": "occupationList",
+                "description": "occupationList",
+                "operationId": "occupationList",
+                "responses": {}
+            }
+        },
+        "/forgotPassword": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }],
+                "summary": "forgotPassword",
+                "description": "forgotPassword",
+                "operationId": "forgotPassword",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/forgotPassword"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/getPostImages": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                        "security_key": []
+                    },
+                    {
+                        "auth_key": []
+                    }
+                ],
+                "summary": "getPostImages",
+                "description": "getPostImages",
+                "operationId": "getPostImages",
+                "responses": {}
+            }
+        },
+        "/addPost": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                        "security_key": []
+                    },
+                    {
+                        "auth_key": []
+                    }
+                ],
+                "summary": "addPost",
+                "description": "addPost",
+                "operationId": "addPost",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/addPost"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/userProfile": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                        "security_key": []
+                    },
+                    {
+                        "auth_key": []
+                    }
+                ],
+                "summary": "userProfile",
+                "description": "userProfile",
+                "operationId": "userProfile",
+                "responses": {}
+            }
+        },
+        "/editPost": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                        "security_key": []
+                    },
+                    {
+                        "auth_key": []
+                    }
+                ],
+                "summary": "editPost",
+                "description": "editPost",
+                "operationId": "editPost",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/editPost"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/deletePost": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                        "security_key": []
+                    },
+                    {
+                        "auth_key": []
+                    }
+                ],
+                "summary": "deletePost",
+                "description": "deletePost",
+                "operationId": "deletePost",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/deletePost"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/notificationOnOf": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                        "security_key": []
+                    },
+                    {
+                        "auth_key": []
+                    }
+                ],
+                "summary": "notificationOnOf",
+                "description": "type 1=>on 0=>off",
+                "operationId": "notificationOnOf",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/notificationOnOf"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/termsPrivacy": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }],
+                "summary": "termsPrivacy",
+                "description": "termsPrivacy",
+                "operationId": "termsPrivacy",
+                "responses": {}
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "logout",
+                "description": "logout",
+                "operationId": "logout",
+                "responses": {}
+            }
+        },
+        "/recevierModeList": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "recevierModeList",
+                "description": "recevierModeList",
+                "operationId": "recevierModeList",
+                "responses": {}
+            }
+        },
+        "/sendComment": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "sendComment",
+                "description": "sendComment",
+                "operationId": "sendComment",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/sendComment"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/otherUserProfile": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "otherUserProfile",
+                "description": "otherUserProfile",
+                "operationId": "otherUserProfile",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/otherUserProfile"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/sendFollowRequest": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "sendFollowRequest",
+                "description": "sendFollowRequest",
+                "operationId": "sendFollowRequest",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/sendFollowRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/otherUserFollowingList": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "otherUserFollowingList",
+                "description": "otherUserFollowingList",
+                "operationId": "otherUserFollowingList",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/otherUserFollowingList"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/notificationListing": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "notificationListing",
+                "description": "notificationListing",
+                "operationId": "notificationListing",
+                "responses": {}
+            }
+        },
+        "/getprofiledata": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "getprofiledata",
+                "description": "getprofiledata",
+                "operationId": "getprofiledata",
+                "responses": {}
+            }
+        },
+        "/updateProfile": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "updateProfile",
+                "description": "updateProfile",
+                "operationId": "updateProfile",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/updateProfile"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/reportPost": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "reportPost",
+                "description": "reportPost",
+                "operationId": "reportPost",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/reportPost"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/unfollowUser": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "unfollowUser",
+                "description": "unfollowUser",
+                "operationId": "unfollowUser",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/unfollowUser"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/rejectFollowRequest": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "rejectFollowRequest",
+                "description": "rejectFollowRequest",
+                "operationId": "rejectFollowRequest",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/rejectFollowRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/acceptFollowRequest": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "acceptFollowRequest",
+                "description": "acceptFollowRequest",
+                "operationId": "acceptFollowRequest",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/acceptFollowRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        },
+        "/reportReasonsList": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "reportReasonsList",
+                "description": "reportReasonsList",
+                "operationId": "reportReasonsList",
+                "responses": {}
+            }
+        },
+        "/commentRepliesList": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [{
+                    "security_key": []
+                }, {
+                    "auth_key": []
+                }],
+                "summary": "commentRepliesList",
+                "description": "commentRepliesList",
+                "operationId": "commentRepliesList",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/commentRepliesList"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {}
+            }
+        }
+
+    },
+
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    },
+    "servers": [{
+            "url": "http://localhost:3112/api"
+        },
+        {
+            "url": "http://202.164.42.227:3112/api"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "auth_key": {
+                "type": "apiKey",
+                "name": "auth_key",
+                "in": "header"
+            },
+            "security_key": {
+                "type": "apiKey",
+                "name": "security_key",
+                "value": "blewglobal123",
+                "in": "header"
+            }
+        },
+        "schemas": {
+            "commentRepliesList": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "commentId": {
+                        "type": "number"
+                    }
+                }
+            },
+            "acceptFollowRequest": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    }
+                }
+            },
+            "rejectFollowRequest": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    }
+                }
+            },
+            "unfollowUser": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "userTo": {
+                        "type": "number"
+                    }
+                }
+            },
+            "reportPost": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "postId": {
+                        "type": "number"
+                    },
+                    "reason": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "updateProfile": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "image": {
+                        "type": "file"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "number"
+                    }
+                }
+            },
+            "otherUserFollowingList": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "userId": {
+                        "type": "number"
+                    }
+                }
+            },
+            "sendFollowRequest": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "userTo": {
+                        "type": "number"
+                    }
+                }
+            },
+            "otherUserProfile": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "userId": {
+                        "type": "number"
+                    }
+                }
+            },
+            "sendComment": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "commentId": {
+                        "type": "string"
+                    },
+                    "comment": {
+                        "type": "string"
+                    },
+                    "postId": {
+                        "type": "number"
+                    }
+                }
+            },
+            "notificationOnOf": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    }
+                }
+            },
+            "deletePost": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "postId": {
+                        "type": "number"
+                    }
+                }
+            },
+            "editPost": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "postId": {
+                        "type": "number"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "addPost": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "image": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "forgotPassword": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    }
+                }
+            },
+            "userlogin": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "signUp": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "image": {
+                        "type": "file"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "occupationId": {
+                        "type": "string"
+                    }
+                }
+            }
+
+
+        }
+    }
+}

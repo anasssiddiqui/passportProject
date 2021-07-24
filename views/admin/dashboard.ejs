@@ -1,0 +1,189 @@
+<% include  layout/header.ejs %>
+    <% include  layout/navbar.ejs %>
+
+        <style>
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            
+            .fade-in {
+                opacity: 0;
+                /* make things invisible upon start */
+                animation: fadeIn ease-in 1;
+                /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+                animation-fill-mode: forwards;
+                /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+                animation-duration: 1s;
+                animation-delay: 0.8s
+            }
+            
+            .image {
+                background-image: url(../../app-assets/images/admin/logo.png);
+                background-size: 22%;
+                background-repeat: no-repeat;
+                background-position: 50% 20%;
+                opacity: .8;
+                margin-top: 90px !important;
+            }
+        </style>
+
+        <!-- BEGIN: Content-->
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper image bg-small">
+
+                <div class="content-header row">
+                </div>
+                <div class="content-body">
+                    <!-- Dashboard Ecommerce Starts -->
+                    <section id="dashboard-ecommerce">
+                        <div class="row fade-in">
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="card">
+                                    <div class="card-header d-flex flex-column align-items-start pb-0">
+                                        <a href="userslist">
+                                            <div class="avatar bg-rgba-primary p-50 m-0">
+                                                <div class="avatar-content">
+                                                    <i class="feather icon-users text-primary font-medium-5"></i>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <h2 class="text-bold-700 mt-1">
+                                            <%=countdata.user_count%>
+                                        </h2>
+                                        <p class="mb-0 margin-bottom">Users Gained</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="card">
+                                    <div class="card-header d-flex flex-column align-items-start pb-0">
+                                        <a href="catlist">
+                                            <div class="avatar bg-rgba-primary p-50 m-0">
+                                                <div class="avatar-content">
+                                                    <i class="feather icon-list text-primary font-medium-5"></i>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <h2 class="text-bold-700 mt-1">
+                                            <%=countdata.cat_count%>
+                                        </h2>
+                                        <p class="mb-0 margin-bottom">Occupations</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="card">
+                                    <div class="card-header d-flex flex-column align-items-start pb-0">
+                                        <a href="postslist">
+                                            <div class="avatar bg-rgba-primary p-50 m-0">
+                                                <div class="avatar-content">
+                                                    <i class="feather icon-align-right text-primary font-medium-5"></i>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <h2 class="text-bold-700 mt-1">
+                                            <%=countdata.posts_count%>
+                                        </h2>
+                                        <p class="mb-0 margin-bottom">Posts</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="row">
+                            <div class="col-lg-8 col-md-6 col-12">
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between align-items-end">
+                                        <h4 class="card-title">Revenue</h4>
+                                        <p class="font-medium-5 mb-0"><i class="feather icon-settings text-muted cursor-pointer"></i></p>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body pb-0">
+                                            <div class="d-flex justify-content-start">
+                                            </div>
+                                            <div id="revenue-chart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row fade-in">
+
+                            <div class="col-12 col-sm-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="mb-0">Top Users</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="table-responsive mt-1">
+                                            <table class="table table-hover-animation mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S.no</th>
+                                                        <th>Image</th>
+                                                        <th>User Name</th>
+                                                        <th>Email</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <% for(let i in countdata.user_data){%>
+                                                        <tr>
+                                                            <td>
+                                                                <%=parseInt(i)+1%>
+                                                            </td>
+                                                            <td class="p-1">
+                                                                <div class="list-unstyled users-list m-0  d-flex align-items-center">
+                                                                    <div data-placement="bottom">
+                                                                        <% if(countdata.user_data[i].profileImage=="") { %>
+                                                                            <img class="media-object rounded-circle" src="../../../app-assets/images/users/unnamed.jpg" alt="Avatar" height="30" width="30">
+                                                                            <% } else { %>
+                                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/users/<%=countdata.user_data[i].profileImage%>" alt="Avatar" height="30" width="30">
+                                                                                <% } %>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <%=countdata.user_data[i].username%>
+                                                            </td>
+                                                            <td>
+                                                                <%=countdata.user_data[i].email%>
+                                                            </td>
+                                                        </tr>
+                                                        <%}%>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                    <!-- Dashboard Ecommerce ends -->
+
+                </div>
+            </div>
+        </div>
+        <!-- END: Content-->
+
+        <div class="sidenav-overlay"></div>
+        <div class="drag-target"></div>
+
+        <!-- BEGIN: Footer-->
+        <% include  layout/footer.ejs %>
+            <script>
+                $(document).ready(function() {
+                    $("div").addClass("");
+                    setTimeout(function() {
+                        $("div").removeClass("image");
+                    }, 200);
+                });
+            </script>

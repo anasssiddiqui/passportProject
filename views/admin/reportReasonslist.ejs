@@ -1,0 +1,230 @@
+<% include  layout/header.ejs %>
+    <% include  layout/navbar.ejs %>
+
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-9 col-12 mb-2">
+                        <div class="row breadcrumbs-top">
+                            <div class="col-12">
+                                <h2 class="content-header-title float-left mb-0">reasons</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <!-- Zero configuration table -->
+                    <!--/ Add rows table -->
+                    <!-- Column selectors with Export Options and print table -->
+                    <section id="basic-datatable">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="card">
+
+                                    <div class="card-content">
+                                        <div class="card-body card-dashboard">
+                                            <div class="table-responsive">
+                                                <table class="table zero-configuration">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.no</th>
+                                                            <th>Reasons</th>
+                                                            <th>Status</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% for(let i in response) { %>
+                                                            <tr>
+                                                                <td>
+                                                                    <%=parseInt(i)+1%>
+                                                                </td>
+
+                                                                <td>
+                                                                    <%=response[i].reasons%>
+                                                                </td>
+                                                                <td> <label class="switch"> <input type="checkbox" class="changestatus"  id="<%=response[i].id%>" <%=(response[i].status==1) ? 'checked' : "" %>> <span class="slider round"></span> </label> </td>
+                                                                <td class="product-action">
+                                                                    <span class="action-edit">
+                                                                        <a href="javascript:void(0);" class="edit" id="<%=response[i].id%>" cate="<%=response[i].reasons%>" image="<%=response[i].image%>" ><i class="feather icon-edit"></i></a>
+                                                                    </span>
+                                                                    <a href="javascript:void(0);" rel="<%=response[i].id%>" table="user" class="delete"><i class="feather icon-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <% } %>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>S.no</th>
+                                                            <th>Reasons</th>
+                                                            <th>Status</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Add/Edit Reason</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <form class="form" method="post" enctype='multipart/form-data' action="/addReasons" id="form">
+                                                <input type="hidden" name="id" id="idd">
+                                                <input type="hidden" id="hiddenimage" name="hiddenimage">
+
+                                                <div class="form-body">
+                                                    <div class="form-group">
+                                                        <label for="feedback2" class="sr-only">Reasons</label>
+                                                        <input type="text" id="feedback2" class="form-control" placeholder="Reasons" name="reasons" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions">
+                                                    <input type="submit" id="savebtn" value="submit" class="btn btn-primary mr-1" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Column selectors with Export Options and print table -->
+                    <!-- Scroll - horizontal and vertical table -->
+                    <!--/ Scroll - horizontal and vertical table -->
+                </div>
+            </div>
+        </div>
+        <!-- END: Content-->
+        <div class="sidenav-overlay"></div>
+        <div class="drag-target"></div>
+
+        <% include  layout/footer.ejs %>
+            <script type="text/javascript">
+                $('.delete').click(function() {
+                    let _this = $(this);
+                    let id = $(this).attr("rel");
+                    let table = $(this).attr("table");
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this data!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((data) => {
+                        if (data) {
+                            $.ajax({
+                                url: "deleteReasons",
+                                type: "post",
+                                data: {
+                                    id: id,
+                                    table: table
+                                },
+                                cache: false,
+                                success: function(response) {
+                                    swal("Proof! Your data has been deleted!", {
+                                        icon: "success",
+                                    }).then(function() {
+                                        location.reload();
+                                    });
+                                },
+                                error(error) {
+                                    console.error(error);
+                                }
+                            });
+                        } else {
+                            swal("Proof! Your data is safe", {
+                                icon: "success",
+                            });
+                        }
+                    });
+                });
+                $(".changestatus").change(function() {
+                    var id = $(this).attr('id');
+                    var table = $(this).attr('table');
+                    var status = 0;
+                    if ($(this).prop("checked") == true) {
+                        status = 1;
+                    } else if ($(this).prop("checked") == false) {
+                        status = 0;
+                    }
+                    var ajaxurl = 'reasonsStatusChange',
+                        data = {
+                            id: id,
+                            table: table,
+                            status: status
+                        };
+                    $.post(ajaxurl, data, function(response) {
+                        if (response == 1) {
+                            swal("Proof! Reason is now active!", {
+                                icon: "success",
+                            });
+                        } else {
+                            swal("Proof! Reason is now inactive!", {
+                                icon: "warning",
+                            });
+                        }
+                    });
+                });
+                $('.edit').click(function() {
+                    var id = $(this).attr('id');
+                    var name = $(this).attr('cate');
+                    var images = $(this).attr('image');
+
+                    $('#idd').val(id);
+                    $('#feedback2').val(name);
+                    $('#hiddenimage').val(images);
+                    $('#blah').attr("src", "../../../app-assets/images/users/" + images);
+                    $('#savebtn').val('Update');
+                });
+            </script>
+            <script>
+                jQuery.validator.addMethod("notEqual", function(value, element, param) { // Adding rules for Amount(Not equal to zero)
+                    return this.optional(element) || value != '0';
+                });
+                $.validator.addMethod("lettersonly", function(value, element) {
+                    return this.optional(element) || /^[A-Za-z0-9]/i.test(value);
+                }, 'letters only please');
+                $("#form").validate({
+                    errorElement: 'div',
+                    rules: {
+                        reasons: {
+                            required: true,
+                            maxlength: 20,
+                            minlength: 3,
+                            lettersonly: true
+
+                        },
+                    },
+                    messages: {
+                        value: {
+                            notEqual: 'Value can not be zero'
+                        },
+                    }
+
+                });
+            </script>
+            <script>
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            $('#blah').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+                $("#upload").change(function() {
+                    readURL(this);
+                });
+            </script>

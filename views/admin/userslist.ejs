@@ -1,0 +1,182 @@
+<% include  layout/header.ejs %>
+    <% include  layout/navbar.ejs %>
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-9 col-12 mb-2">
+                        <div class="row breadcrumbs-top">
+                            <div class="col-12">
+                                <h2 class="content-header-title float-left mb-0">Users list</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+                        <a href="adduser">
+                            <div class="form-group breadcrum-right">
+                                <div> <button class="btn-icon btn btn-primary btn-round btn-sm " type="button"><i
+                                class="feather icon-plus-circle"></i></button>
+                                    <!-- <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="adduser">Add student</a>
+                                </div> -->
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="content-body">
+                    <!-- Zero configuration table -->
+                    <!--/ Add rows table -->
+                    <!-- Column selectors with Export Options and print table -->
+                    <section id="column-selectors">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+
+                                    <div class="card-content">
+                                        <div class="card-body card-dashboard">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped dataex-html5-selectors">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.no</th>
+                                                            <th>Image</th>
+                                                            <th>Name</th>
+                                                            <th>Unique name</th>
+                                                            <th>Email</th>
+                                                            <th>Phone</th>
+                                                            <th>Status</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% for(let i in response) { %>
+                                                            <tr>
+                                                                <td>
+                                                                    <%=parseInt(i)+1%>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(response[i].profileImage == " ") { %> <img src="../../../app-assets/images/users/default.png" style="border-radius: 8px;" width="48" height="48" alt="">
+                                                                        <% } else { %> <img src="../../../app-assets/images/users/<%=response[i].profileImage%>" style="border-radius: 8px;" width="48" height="48" alt="User">
+                                                                            <% } %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=response[i].username%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=response[i].uniqueName%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=response[i].email%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=response[i].phone%>
+                                                                </td>
+                                                                <td> <label class="switch"> <input type="checkbox" class="changestatus"  id="<%=response[i].id%>" <%=(response[i].status==1) ? 'checked' : "" %>> <span class="slider round"></span><b class="verify"></b> </label>                                                                    </td>
+                                                                <td class="product-action">
+                                                                    <span class="action-edit"><a href="edituser?id=<%=response[i].id%>"><i class="feather icon-edit"></i></a></span>
+                                                                    <a href="javascript:void(0);" rel="<%=response[i].id%>" table="user" class="delete"><i class="feather icon-trash"></i></a>
+
+                                                                    <span class="action-edit"><a href="viewuser?id=<%=response[i].id%>"><i class="feather icon-eye"></i></a></span>
+                                                                </td>
+                                                            </tr>
+                                                            <% } %>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>S.no</th>
+                                                            <th>Image</th>
+                                                            <th>Name</th>
+                                                            <th>Email</th>
+                                                            <th>Phone</th>
+                                                            <th>Status</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Column selectors with Export Options and print table -->
+                    <!-- Scroll - horizontal and vertical table -->
+                    <!--/ Scroll - horizontal and vertical table -->
+                </div>
+            </div>
+        </div>
+        <!-- END: Content-->
+        <div class="sidenav-overlay"></div>
+        <div class="drag-target"></div>
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <% include  layout/footer.ejs %>
+            <script type="text/javascript">
+                $('.delete').click(function() {
+                    let _this = $(this);
+                    let id = $(this).attr("rel");
+                    let table = $(this).attr("table");
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this data!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((data) => {
+                        if (data) {
+                            $.ajax({
+                                url: "deleteuser",
+                                type: "post",
+                                data: {
+                                    id: id,
+                                    table: table
+                                },
+                                cache: false,
+                                success: function(response) {
+                                    swal("Proof! Your data has been deleted!", {
+                                        icon: "success",
+                                    }).then(function() {
+                                        location.reload();
+                                    });
+                                },
+                                error(error) {
+                                    console.error(error);
+                                }
+                            });
+                        } else {
+                            swal("Proof! Your data is safe", {
+                                icon: "success",
+                            });
+                        }
+                    });
+                });
+                $(".changestatus").change(function() {
+                    var id = $(this).attr('id');
+                    var table = $(this).attr('table');
+                    var status = 0;
+                    if ($(this).prop("checked") == true) {
+                        status = 1;
+                    } else if ($(this).prop("checked") == false) {
+                        status = 0;
+                    }
+                    var ajaxurl = 'users_statuschange',
+                        data = {
+                            id: id,
+                            table: table,
+                            status: status
+                        };
+                    $.post(ajaxurl, data, function(response) {
+                        if (response == 1) {
+                            swal("Proof! User is now Active!", {
+                                icon: "success",
+                            })
+                        } else {
+                            swal("Proof! User is now Inactive!", {
+                                icon: "warning",
+                            })
+                        }
+                    });
+                });
+            </script>

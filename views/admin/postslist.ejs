@@ -1,0 +1,180 @@
+<% include  layout/header.ejs %>
+    <% include  layout/navbar.ejs %>
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-9 col-12 mb-2">
+                        <div class="row breadcrumbs-top">
+                            <div class="col-12">
+                                <h2 class="content-header-title float-left mb-0">Posts list</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="content-body">
+                    <!-- Zero configuration table -->
+                    <!--/ Add rows table -->
+                    <!-- Column selectors with Export Options and print table -->
+                    <section id="column-selectors">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+
+                                    <div class="card-content">
+                                        <div class="card-body card-dashboard">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped dataex-html5-selectors">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.no</th>
+                                                            <th>User unique id</th>
+                                                            <th>Image</th>
+                                                            <th>Title</th>
+                                                            <th>Description</th>
+                                                            <th>Created at</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% for(let i in response) { %>
+                                                            <tr>
+                                                                <td>
+                                                                    <%=parseInt(i)+1%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=response[i].username%>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(response[i].image == " ") { %> <img src="../../../app-assets/images/users/default.png" style="border-radius: 8px;" width="48" height="48" alt="">
+                                                                        <% } else { %> <img src="../../../app-assets/images/users/<%=response[i].image%>" style="border-radius: 8px;" width="48" height="48" alt="User">
+                                                                            <% } %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=response[i].title%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=response[i].description%>
+                                                                </td>
+                                                                <td>
+                                                                    <%
+                                                    var d = new Date(response[i].createdAt);
+                                                    var days= d.getDate();
+                                                    var months= (d.getMonth()+1);
+                                                    var years=  d.getFullYear();
+                                                    days = (days < 10 ? "0" : "") + days;
+                                                    months = (months < 10 ? "0" : "") + months;
+                                                   
+                                                    var TodayTime =days  + "-" + months + "-" + years + " " 
+                                                 
+                                                    %>
+
+                                                                        %>
+                                                                        <%= TodayTime  %>
+                                                                </td>
+                                                                <td class="product-action">
+                                                                    <span class="action-edit"><a href="editpost?id=<%=response[i].id%>"><i class="feather icon-edit"></i></a></span>
+                                                                    <a href="javascript:void(0);" rel="<%=response[i].id%>" table="user" class="delete"><i class="feather icon-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <% } %>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>S.no</th>
+                                                            <th>User unique id</th>
+                                                            <th>Image</th>
+                                                            <th>Title</th>
+                                                            <th>Description</th>
+                                                            <th>Created at</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Column selectors with Export Options and print table -->
+                    <!-- Scroll - horizontal and vertical table -->
+                    <!--/ Scroll - horizontal and vertical table -->
+                </div>
+            </div>
+        </div>
+        <!-- END: Content-->
+        <div class="sidenav-overlay"></div>
+        <div class="drag-target"></div>
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <% include  layout/footer.ejs %>
+            <script type="text/javascript">
+                $('.delete').click(function() {
+                    let _this = $(this);
+                    let id = $(this).attr("rel");
+                    let table = $(this).attr("table");
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this data!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((data) => {
+                        if (data) {
+                            $.ajax({
+                                url: "deletepost",
+                                type: "post",
+                                data: {
+                                    id: id,
+                                    table: table
+                                },
+                                cache: false,
+                                success: function(response) {
+                                    swal("Proof! Your data has been deleted!", {
+                                        icon: "success",
+                                    }).then(function() {
+                                        location.reload();
+                                    });
+                                },
+                                error(error) {
+                                    console.error(error);
+                                }
+                            });
+                        } else {
+                            swal("Proof! Your data is safe", {
+                                icon: "success",
+                            });
+                        }
+                    });
+                });
+                $(".changestatus").change(function() {
+                    var id = $(this).attr('id');
+                    var table = $(this).attr('table');
+                    var status = 0;
+                    if ($(this).prop("checked") == true) {
+                        status = 1;
+                    } else if ($(this).prop("checked") == false) {
+                        status = 0;
+                    }
+                    var ajaxurl = 'users_statuschange',
+                        data = {
+                            id: id,
+                            table: table,
+                            status: status
+                        };
+                    $.post(ajaxurl, data, function(response) {
+                        if (response == 1) {
+                            swal("Proof! User is now Active!", {
+                                icon: "success",
+                            })
+                        } else {
+                            swal("Proof! User is now Inactive!", {
+                                icon: "warning",
+                            })
+                        }
+                    });
+                });
+            </script>

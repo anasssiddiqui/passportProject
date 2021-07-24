@@ -1,0 +1,163 @@
+<% include  layout/header.ejs %>
+    <% include  layout/navbar.ejs %>
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-9 col-12 mb-2">
+                        <div class="row breadcrumbs-top">
+                            <div class="col-12">
+                                <h2 class="content-header-title float-left mb-0">Edit Post</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+                        <a href="postslist">
+                            <div class="form-group breadcrum-right">
+                                <div> <button class="btn-icon btn btn-primary btn-round btn-sm " type="button"><i
+                                class="feather icon-list"></i></button>
+                                    <!-- <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="adduser">Add student</a>
+                                </div> -->
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="content-body">
+                        <section id="floating-label-layouts">
+                            <div class="row match-height">
+
+                                <div class="col-md-12 col-12">
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <form class="form" enctype='multipart/form-data' method="post" id="user" action="updatePost">
+
+                                                    <input type="hidden" name="id" value="<%=posts_data.id%>">
+
+                                                    <div class="form-body">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="form-label-group position-relative has-icon-left">
+                                                                    <input type="text" id="first-name-floating-icon" class="form-control" name="username" placeholder="Unique Id" value="<%=posts_data.username%>" disabled>
+                                                                    <div class="form-control-position">
+                                                                        <i class="feather icon-user"></i>
+                                                                    </div>
+                                                                    <label for="first-name-floating-icon">Unique Id</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="form-label-group position-relative has-icon-left">
+                                                                    <input type="text" id="email-id-floating-icon" class="form-control" name="title" placeholder="Title" value="<%=posts_data.title%>">
+                                                                    <div class="form-control-position">
+                                                                        <i class="feather icon-mail"></i>
+                                                                    </div>
+                                                                    <label for="email-id-floating-icon">Title</label>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="form-label-group position-relative has-icon-left">
+                                                                    <fieldset class="form-label-group">
+                                                                        <textarea class="form-control" id="label-textarea" rows="8" cols="50" name="description" placeholder="Description"><%=posts_data.description%></textarea>
+                                                                        <label for="label-textarea">Description</label>
+                                                                    </fieldset>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <!-- END: Content-->
+
+            <div class="sidenav-overlay"></div>
+            <div class="drag-target"></div>
+            <% include  layout/footer.ejs %>
+                <script>
+                    console.log(users_data.phone)
+
+                    function readURL(input) {
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                $('#blah').attr('src', e.target.result);
+                            }
+
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
+
+                    $("#upload").change(function() {
+                        readURL(this);
+                    });
+                </script>
+                <script>
+                    $("#user").validate({
+                        errorElement: 'div',
+                        rules: {
+                            title: {
+                                required: true,
+                                maxlength: 50,
+                            },
+                            description: {
+                                required: true,
+                            }
+                        },
+                        messages: {
+                            username: {
+                                required: "Text field is required.",
+                            },
+                        }
+
+                    });
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUdXAPh9pzLfcW4ITFNitZ5ytAIHPcb54&libraries=places&callback=initAutocomplete" async defer></script>
+
+                <script>
+                    var placeSearch, autocomplete;
+
+                    var componentForm = {
+                        street_number: 'short_name',
+                        route: 'long_name',
+                        locality: 'long_name',
+                        administrative_area_level_1: 'short_name',
+                        country: 'long_name',
+                        postal_code: 'short_name'
+                    };
+
+                    function initAutocomplete() {
+
+                        autocomplete = new google.maps.places.Autocomplete(
+                            document.getElementById('autocomplete'), {
+                                types: ['geocode']
+                            });
+
+
+                        autocomplete.addListener('place_changed', fillInAddress);
+                    }
+
+                    function fillInAddress() {
+
+                        var place = autocomplete.getPlace();
+
+
+
+                        let lat = place.geometry.location.lat();
+                        let lng = place.geometry.location.lng();
+
+                        $("#pac-lat").val(lat);
+                        $("#pac-lang").val(lng);
+                    }
+                </script>
