@@ -130,13 +130,13 @@ module.exports = {
                 requireTLS: true,
                 service: 'gmail',
                 auth: {
-                    user: 'cqlsystest52@gmail.com',
-                    pass: 'cqlsystest@123'
+                    user: '',
+                    pass: ''
                 }
             });
             console.log(data.dataValues.email, "======================")
             var mailOptions = {
-                from: 'cqlsystest52@gmail.com',
+                from: '',
                 to: data.dataValues.email,
                 subject: 'BLEWGLOBAL: Forgot password',
                 html: 'Click here for change password <a href="http://202.164.42.227:3112/api/url_id/' + otp + '"> Click</a>'
@@ -362,14 +362,14 @@ module.exports = {
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'cqlsystest52@gmail.com',
-                    pass: 'cqlsys@123'
+                    user: '',
+                    pass: ''
                 }
             });
             console.log(find_users, '----------------');
 
             var mailOptions = {
-                from: 'cqlsystest52@gmail.com',
+                from: '',
                 to: find_users,
                 subject: 'SoleFinder',
                 html: '<h4>' + message + '<h4>'
