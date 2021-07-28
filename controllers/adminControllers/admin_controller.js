@@ -1,12 +1,6 @@
-const db = require('../../models');
-const users = db.users
 var crypto = require('crypto')
-const database = require('../../db/db');
-const sequelize = require('sequelize');
 const Helper = require('../../config/helper');
-const admin = db.admin
-const occupations = db.occupations
-const posts = db.posts
+
 
 
 module.exports = {

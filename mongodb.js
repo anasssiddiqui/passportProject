@@ -1,25 +1,27 @@
 const nodemailer = require('nodemailer');
 const express = require('express');
+const colors = require('colors');
+
 const app = express();
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
-const toastr = require('express-toastr');
 const fs = require('fs');
 const passport = require('passport')
-
-const Sequelize = require('sequelize');
+const connectDB = require('./config/db')
 const path = require('path');
-// const uuid = require('uuid');
+const dotenv = require('dotenv')
+    // const uuid = require('uuid');
 const expressValidator = require('express-validator');
-
+dotenv.config({ path: './.env' });
 let swaggerUi = require('swagger-ui-express');
 let swaggerDocument = require('./swagger.json');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
+connectDB();
 const mailer = require('express-mailer');
 const crypto = require('crypto');
 const flash = require('express-flash');
 const session = require('express-session');
+const { connect } = require('http2');
 app.use(session({
     secret: 'ssshhhhh'
 }));
@@ -45,5 +47,5 @@ require('./routes/apiroute')(app);
 
 
 app.listen(3112, function() {
-    console.log('Node app is running on port 3112');
+    console.log('Node app is running on port 3112'.green.underline.bold);
 });

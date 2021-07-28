@@ -1,4 +1,3 @@
-const db = require('../models');
 const bcrypt = require('bcrypt');
 const helper = require('../helpers/helper');
 const jasonData = require('../helpers/jsonData');

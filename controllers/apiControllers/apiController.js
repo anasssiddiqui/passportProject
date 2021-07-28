@@ -1,5 +1,4 @@
 require('dotenv').config()
-const db = require('../../models');
 const helper = require('../../helpers/helper');
 const jsonData = require('../../helpers/jsonData');
 const commonFunctions = require('../../helpers/commonFunctions');

@@ -1,10 +1,7 @@
 /* const bcrypt = require('bcrypt'); */
-const config = require('./config');
 const contant = require('../constant');
 const crypto = require('crypto');
 const path = require('path');
-const db = require('../models');
-const users = db.users
 var uuid = require('uuid');
 var FCM = require('fcm-node');
 const express = require('express');
